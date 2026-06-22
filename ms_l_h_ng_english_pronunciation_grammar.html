@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Tiếng Anh Siêu Cấp - Ms Lê Hằng English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --bg-teal: #00B4A2;
+            --dark-teal: #00796B;
+            --emerald: #00A699;
+            --glass-white: rgba(255, 255, 255, 0.25);
+            --correct: #00D26A;
+            --wrong: #FF4757;
+            --accent-yellow: #FDCB6E;
+            --accent-orange: #FF8F00;
+            --eng-blue: #1976D2;
+            --vn-red: #D84315;
+            --primary: #8854C0;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Nunito', sans-serif;
+            background: linear-gradient(-45deg, #8854C0, #FDCB6E, #00C9A7, #00B4A2);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            min-height: 100vh;
+            color: #2D3748;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .decor-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.18;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cg fill='%23ffffff' fill-opacity='0.9'%3E%3Cpath d='M12 24 C 15 20, 18 20, 20 24 C 22 28, 15 35, 12 24 Z'/%3E%3Ccircle cx='75' cy='35' r='5'/%3E%3Cpath d='M40 70 L48 70 L44 78 Z'/%3E%3Cpath d='M80 80 Q 85 70, 90 80 T 100 80' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
+            animation: backgroundFloat 35s linear infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0% { background-position: 0 0; }
+            100% { background-position: 600px 1200px; }
+        }
+
+        /* Interactive 3D Buttons */
+        .btn-3d {
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 0px rgba(0,0,0,0.15);
+        }
+        .btn-3d:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px rgba(0,0,0,0.15);
+        }
+
+        .btn-answer {
+            background-color: #E0F2F1;
+            color: #1A365D;
+            transition: all 0.12s ease;
+            box-shadow: 0 6px 0px #B2DFDB;
+        }
+        .btn-answer:hover:not(.disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 0px #B2DFDB;
+            background-color: #F4FBFB;
+        }
+        .btn-answer:active:not(.disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #B2DFDB;
+        }
+        .btn-answer.correct {
+            background-color: var(--correct) !important;
+            color: white !important;
+            box-shadow: 0 6px 0px #009624 !important;
+        }
+        .btn-answer.wrong {
+            background-color: var(--wrong) !important;
+            color: white !important;
+            box-shadow: 0 6px 0px #C2185B !important;
+        }
+
+        /* Glassmorphism containers */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+            border: 3.5px solid #FBC02D;
+            border-radius: 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        /* Navigation Tabs */
+        .tab-btn {
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #1A3038;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+        .tab-btn.active {
+            background-color: var(--dark-teal) !important;
+            color: white !important;
+            box-shadow: 0 5px 0 #004D40 !important;
+            transform: translateY(2px);
+        }
+
+        /* Explanation Box Styling */
+        .explanation-box {
+            background: #FFFFFF;
+            border-left: 10px solid var(--accent-orange);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            animation: slideDown 0.35s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .banner-instruction {
+            background-color: #FFF9C4;
+            border: 2px dashed var(--accent-orange);
+            border-radius: 12px;
+            color: #E65100;
+        }
+
+        .exp-word {
+            color: var(--eng-blue);
+            font-weight: 800;
+        }
+        .exp-ipa {
+            background-color: #F3E5F5;
+            color: #7B1FA2;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+        }
+        .exp-meaning {
+            color: var(--vn-red);
+            font-weight: 700;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Envelope Letter Container style */
+        .envelope-letter {
+            background: #FFFDF0;
+            border: 3px solid #E0D39E;
+            border-radius: 20px;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.04);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .spooky-card {
+            background: #FFF3E0;
+            border: 3px solid #FF9800;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="pb-28">
+
+    <div class="decor-pattern"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container mx-auto px-4 max-w-4xl pt-6">
+        <header class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 bg-emerald-800/40 text-white py-1 px-4 rounded-full text-xs font-black mb-2 shadow-sm border border-white/20">
+                <i class="fa-solid fa-graduation-cap text-yellow-300"></i> Giáo viên tạo: Ms Lê Hằng English
+            </div>
+            <h1 class="text-2xl md:text-4xl font-black text-white drop-shadow-[0_3px_0_rgba(0,0,0,0.15)] tracking-wide">
+                🌟 ĐẠI NỘI DUNG ÔN TẬP TIẾNG ANH SIÊU CẤP 🌟
+            </h1>
+        </header>
+
+        <div class="warning-box p-5 md:p-6 mb-8 text-center">
+            <h3 class="text-lg font-black text-amber-800 flex justify-center items-center gap-2 mb-2">
+                <i class="fa-solid fa-triangle-exclamation text-xl text-red-500 animate-bounce"></i> 
+                LỜI NHẮC CỰC KỲ QUAN TRỌNG
+                <i class="fa-solid fa-triangle-exclamation text-xl text-red-500 animate-bounce"></i>
+            </h3>
+            <p class="text-amber-900 font-bold text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                Chỉ có <span class="text-red-500 underline decoration-2">đọc kỹ giải thích ngay sau mỗi câu</span>, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.
+            </p>
+            <p class="text-amber-800 font-bold text-xs md:text-sm mt-2">
+                Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+            </p>
+            <div class="mt-3 text-purple-700 font-black tracking-widest text-xs animate-pulse">
+                * Kéo tới đâu, làm tới đó! *
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <p class="text-white font-black text-center mb-3 drop-shadow text-xs tracking-wider uppercase">
+                <i class="fa-solid fa-book-open"></i> Chọn Chương Trình Ôn Tập Giao Diện Phân Loại bên dưới:
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-2 bg-black/25 p-2 rounded-3xl backdrop-blur-md" id="tabs-container">
+                <!-- Tabs will render here through JavaScript -->
+            </div>
+        </div>
+
+        <main class="glass-card p-6 md:p-8 relative min-h-[400px]">
+            <div id="exercise-workspace" class="transition-all duration-300">
+                <!-- Current Active Question/Exercise Renders here -->
+            </div>
+        </main>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 w-full bg-white/90 border-t-4 border-emerald-600 px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] flex items-center justify-between gap-4 z-40 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+            <div class="bg-yellow-100 text-amber-800 py-1.5 px-4 rounded-2xl flex items-center gap-2 font-black text-xs md:text-sm border border-yellow-300 shadow-sm">
+                <i class="fa-solid fa-star text-yellow-400 animate-spin-slow"></i>
+                <span>Điểm rèn luyện: <span id="footer-score-text" class="text-emerald-600 text-lg">0</span></span>
+            </div>
+            <div class="hidden sm:block w-40 md:w-64 bg-gray-200 h-4 rounded-full overflow-hidden shadow-inner border border-gray-300">
+                <div class="bg-gradient-to-r from-emerald-400 to-green-400 h-full w-0 transition-all duration-300 rounded-full" id="footer-progress-bar"></div>
+            </div>
+        </div>
+        <button onclick="submitFinal()" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black px-6 py-2.5 rounded-2xl shadow-[0_5px_0px_#059669] hover:brightness-110 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 text-xs md:text-sm">
+            <i class="fa-solid fa-flag-checkered"></i> GỬI KẾT QUẢ CHO CÔ HẰNG
+        </button>
+    </footer>
+
+    <div id="dropdown-overlay" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-md border-4 border-emerald-500 shadow-2xl transform scale-95 transition-transform duration-200" id="popup-box">
+            <h4 class="text-emerald-700 font-black text-lg text-center mb-4 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-circle-question text-yellow-400"></i> Lựa chọn đáp án đúng:
+            </h4>
+            <div class="space-y-2" id="popup-choices-anchor">
+                <!-- Dynamic selections for popups go here -->
+            </div>
+            <button class="w-full mt-4 bg-gray-200 text-gray-700 font-bold py-2.5 rounded-xl border-b-4 border-gray-400 active:border-b-0 active:translate-y-1 transition-all text-sm" onclick="closeDropdown()">
+                Hủy bỏ
+            </button>
+        </div>
+    </div>
+
+    <div id="result-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-[32px] p-6 md:p-8 w-full max-w-lg border-4 border-emerald-400 shadow-2xl text-center">
+            <div class="text-5xl mb-3">🎓</div>
+            <h3 class="text-xl md:text-2xl font-black text-teal-700 mb-2">Ms Lê Hằng English Đánh Giá</h3>
+            <div class="bg-teal-50 p-4 rounded-2xl border-2 border-dashed border-teal-200 mb-4">
+                <p class="text-gray-500 font-bold text-sm">Điểm số đạt được:</p>
+                <p class="text-4xl font-extrabold text-emerald-500 animate-bounce" id="modal-score-percent">0%</p>
+                <p class="text-xs text-teal-600 mt-1 font-bold" id="modal-score-fraction">(0/0 câu đúng)</p>
+            </div>
+            <p class="text-gray-700 font-bold text-sm md:text-base mb-6 leading-relaxed text-left max-h-48 overflow-y-auto" id="modal-comment"></p>
+            <div class="flex gap-3">
+                <button onclick="restartTest()" class="flex-1 bg-yellow-400 text-amber-950 border-b-4 border-yellow-600 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Làm lại bài <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button onclick="closeResultModal()" class="flex-1 bg-gray-200 text-gray-700 border-b-4 border-gray-400 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Xem lại đáp án
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function playSound(type) {
+            try {
+                if (!audioCtx) audioCtx = new AudioContextClass();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    // Crisp double-bell ding-dong chime
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+
+                    setTimeout(() => {
+                        const osc2 = audioCtx.createOscillator();
+                        const gain2 = audioCtx.createGain();
+                        osc2.connect(gain2);
+                        gain2.connect(audioCtx.destination);
+                        osc2.type = 'sine';
+                        osc2.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5
+                        gain2.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                        gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                        osc2.start();
+                        osc2.stop(audioCtx.currentTime + 0.3);
+                    }, 120);
+                } else if (type === 'wrong') {
+                    // Fun comical low-pitched slide-down buzz (Téo tèo tèo)
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.4);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                }
+            } catch (err) {
+                console.log("Audio issue: ", err);
+            }
+        }
+
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let confettis = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function spawnConfetti() {
+            confettis = [];
+            for (let i = 0; i < 65; i++) {
+                confettis.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 6,
+                    color: ['#8854C0', '#FDCB6E', '#00C9A7', '#00D26A', '#FF4757'][Math.floor(Math.random() * 5)],
+                    speedY: Math.random() * 4 + 3,
+                    speedX: Math.random() * 4 - 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 6 - 3
+                });
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let activeParticles = false;
+            confettis.forEach(c => {
+                c.y += c.speedY;
+                c.x += c.speedX;
+                c.rotation += c.rotationSpeed;
+                if (c.y < canvas.height) {
+                    activeParticles = true;
+                    ctx.save();
+                    ctx.translate(c.x, c.y);
+                    ctx.rotate(c.rotation * Math.PI / 180);
+                    ctx.fillStyle = c.color;
+                    ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
+                    ctx.restore();
+                }
+            });
+            if (activeParticles) requestAnimationFrame(animateConfetti);
+        }
+
+        // Fisher-Yates Shuffle array generator
+        function shuffleArray(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        const database = {
+            "ex1_p1": {
+                title: "Exercise 1: Reorder (Q1-11)",
+                desc: "Chọn cấu trúc viết câu sắp xếp hoàn toàn chính xác.",
+                questions: [
+                    {
+                        id: "ex1_q1",
+                        q: "Vietnamese / at / tradition / It’s / with / reunite / to / Tet. / families",
+                        options: [
+                            "It's Vietnamese tradition to reunite with families at Tet.",
+                            "Tradition to reunite with families is at Tet Vietnamese.",
+                            "It's tradition to reunite with Vietnamese families at Tet.",
+                            "To reunite with families is Vietnamese tradition at Tet."
+                        ],
+                        answer: "It's Vietnamese tradition to reunite with families at Tet.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Liệt kê nghĩa các đáp án:<br>• <span class='exp-word'>It's Vietnamese tradition to reunite with families at Tet.</span>: Ăn Tết sum họp với gia đình là truyền thống của người Việt Nam.<br>• <span class='exp-word'>Các đáp án khác</span>: Sai cấu trúc ngữ pháp thông dụng hoặc đặt sai vị trí từ chỉ quốc gia 'Vietnamese'.<br>3. Tại sao chọn cấu trúc này? Áp dụng cấu trúc chủ ngữ giả định: <span class='exp-word'>It's + adjective/noun phrase + to-V (thật là... khi làm gì đó)</span>.<br>4. Các câu khác bị xáo trộn trật tự tính từ hoặc danh từ bổ nghĩa sai vị trí."
+                    },
+                    {
+                        id: "ex1_q2",
+                        q: "time. / as / in / Custom / is / and / from / tradition / some / aspects / such / scale / different",
+                        options: [
+                            "Custom is different from tradition in some aspects such as scale and time.",
+                            "Custom different is from tradition in aspects such scale as and time.",
+                            "In some aspects such as scale and time, custom from tradition is different.",
+                            "Tradition is different in custom from some aspects such as scale and time."
+                        ],
+                        answer: "Custom is different from tradition in some aspects such as scale and time.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Liệt kê nghĩa các từ vựng cốt lõi:<br>• <span class='exp-word'>different from</span>: khác biệt với.<br>• <span class='exp-word'>such as</span>: ví dụ như là.<br>• <span class='exp-word'>scale and time</span>: quy mô và thời gian.<br>3. Tại sao chọn đáp án này? Cấu trúc ngữ pháp hoàn chỉnh: <span class='exp-word'>S + be + different from + O + in + aspects (Chủ ngữ khác với tân ngữ ở các khía cạnh...)</span>.<br>4. Các câu còn lại đặt sai vị trí từ nối 'such as' hoặc tách rời giới từ của 'different'."
+                    },
+                    {
+                        id: "ex1_q3",
+                        q: "fork / table / at / manners / to / to / According / dinner. / and / knife / use / in / the / have / we / a / England,",
+                        options: [
+                            "According to the table manners in England, we have to use a knife and fork at dinner.",
+                            "According to the table manners in England, we have use a knife and fork at to dinner.",
+                            "In England table manners, according we have to use a knife and fork at dinner.",
+                            "According to the knife and fork table manners in England, we have to use at dinner."
+                        ],
+                        answer: "According to the table manners in England, we have to use a knife and fork at dinner.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm từ vựng cốt lõi:<br>• <span class='exp-word'>According to...</span>: Theo như...<br>• <span class='exp-word'>table manners</span>: quy tắc ứng xử bàn ăn.<br>• <span class='exp-word'>have to + V-inf</span>: bắt buộc phải làm gì.<br>3. Tại sao chọn đáp án này? Câu gốc có đầy đủ trạng từ chỉ vị trí và thời gian đặt đúng chỗ: 'According to..., we have to use...' chuẩn cấu trúc.<br>4. Các câu khác thiếu giới từ hoặc sắp xếp sai cấu trúc 'have to'."
+                    },
+                    {
+                        id: "ex1_q4",
+                        q: "shouldn’t / you / Australia, / a / In / accent. / person's / criticize",
+                        options: [
+                            "In Australia, you shouldn't criticize a person's accent.",
+                            "In Australia, you shouldn't accent a person's criticize.",
+                            "A person's accent you shouldn't criticize in Australia.",
+                            "In Australia, shouldn't you criticize a person's accent."
+                        ],
+                        answer: "In Australia, you shouldn't criticize a person's accent.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Liệt kê nghĩa các từ cốt lõi:<br>• <span class='exp-word'>criticize</span> (v): chỉ trích, phê phán.<br>• <span class='exp-word'>accent</span> (n): giọng điệu địa phương.<br>• <span class='exp-word'>shouldn't</span>: không nên.<br>3. Tại sao chọn đáp án này? Trật tự chuẩn: <span class='exp-word'>Trạng ngữ chỉ nơi chốn (In Australia) + S + modal verb (shouldn't) + V-inf + O</span>.<br>4. Các câu khác đảo ngược sai vị trí tân ngữ sở hữu cách hoặc biến thành câu hỏi nghi vấn."
+                    },
+                    {
+                        id: "ex1_q5",
+                        q: "Viet Nam, / as / don’t / have / you / a / Japan. / bow / do / deep / to / in / you / take / In",
+                        options: [
+                            "In Viet Nam, you don't have to take a deep bow as you do in Japan.",
+                            "In Viet Nam, you don't have take a deep bow as you do to in Japan.",
+                            "You don't have to take a deep bow as you do in Japan In Viet Nam.",
+                            "In Japan, you don't have to take a deep bow as you do in Viet Nam."
+                        ],
+                        answer: "In Viet Nam, you don't have to take a deep bow as you do in Japan.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích ngữ nghĩa từ vựng:<br>• <span class='exp-word'>take a deep bow</span>: cúi đầu chào sâu.<br>• <span class='exp-word'>don't have to</span>: không cần thiết phải làm gì.<br>• <span class='exp-word'>as you do...</span>: giống như cách bạn làm tại...<br>3. Tại sao chọn đáp án này? Cấu trúc so sánh hành vi xã hội giữa hai quốc gia: <span class='exp-word'>you don't have to do something as you do in...</span><br>4. Các câu còn lại đặt sai vị trí trạng ngữ hoặc đảo ngược nghĩa văn hóa thực tế giữa Việt Nam và Nhật Bản."
+                    },
+                    {
+                        id: "ex1_q6",
+                        q: "be/ great / Elderly / respect. / should / with / people / treated",
+                        options: [
+                            "Elderly people should be treated with great respect.",
+                            "Elderly people should treat with great respect be.",
+                            "Great respect should be treated with elderly people.",
+                            "Elderly should people be treated with great respect."
+                        ],
+                        answer: "Elderly people should be treated with great respect.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cấu trúc bị động:<br>• <span class='exp-word'>Elderly people</span>: người cao tuổi.<br>• <span class='exp-word'>should be treated</span>: nên được đối xử.<br>• <span class='exp-word'>with great respect</span>: với sự tôn kính to lớn.<br>3. Tại sao chọn đáp án này? Cấu trúc động từ khuyết thiếu thể bị động: <span class='exp-word'>S + should + be + V3/V-ed + O</span>.<br>4. Các từ còn lại sai vị trí động từ 'be' hoặc chia sai trật tự từ bổ nghĩa 'elderly people'."
+                    },
+                    {
+                        id: "ex1_q7",
+                        q: "the / traditions / have / Do / follow / you / to / strictly?",
+                        options: [
+                            "Do you have to follow the traditions strictly?",
+                            "Do you have follow to the traditions strictly?",
+                            "Do you follow to have the traditions strictly?",
+                            "Strictly, do you have to follow the traditions?"
+                        ],
+                        answer: "Do you have to follow the traditions strictly?",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm trạng từ bổ nghĩa:<br>• <span class='exp-word'>strictly</span> (adv): một cách nghiêm ngặt, chuẩn chỉ.<br>• <span class='exp-word'>follow the traditions</span>: tuân theo truyền thống.<br>3. Tại sao chọn đáp án này? Câu hỏi nghi vấn hiện tại đơn với 'have to': <span class='exp-word'>Do + S + have to + V-inf + O + trạng từ?</span> Trạng từ 'strictly' đứng cuối bổ nghĩa cho động từ 'follow'.<br>4. Các câu còn lại đặt sai vị trí của 'to' hoặc 'have'."
+                    },
+                    {
+                        id: "ex1_q8",
+                        q: "Traditionally, / until / marriage. / children / live / parents / with / their / Vietnamese",
+                        options: [
+                            "Traditionally, Vietnamese children live with their parents until marriage.",
+                            "Traditionally, Vietnamese children with their parents live until marriage.",
+                            "Traditionally, Vietnamese children live until marriage with their parents.",
+                            "Vietnamese children traditionally live with their parents marriage until."
+                        ],
+                        answer: "Traditionally, Vietnamese children live with their parents until marriage.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm liên kết nghĩa:<br>• <span class='exp-word'>Traditionally</span> (adv): theo truyền thống từ xưa đến nay.<br>• <span class='exp-word'>until marriage</span>: cho đến khi kết hôn lập gia đình.<br>3. Tại sao chọn đáp án này? Cấu trúc câu chuẩn xác với trạng từ chỉ phương thức đứng đầu câu ngăn cách bởi dấu phẩy, theo sau là mệnh đề chính.<br>4. Các phương án còn lại đặt sai trật tự của giới từ chỉ thời gian hạn định 'until'."
+                    },
+                    {
+                        id: "ex1_q9",
+                        q: "or / Eve / tradition, / New / the / good / luck / enter / to / person / brings / house / luck. / the / first / Year’s / either / bad / to / According / on",
+                        options: [
+                            "According to tradition, the first person to enter the house on New Year's Eve brings either good luck or bad luck.",
+                            "According to tradition, the first person to enter the house on New Year's Eve brings good luck or either bad luck.",
+                            "According to tradition, the first person enter to the house on New Year's Eve brings either good luck or bad luck.",
+                            "The first person to enter the house on New Year's Eve brings either good luck or bad luck according to tradition."
+                        ],
+                        answer: "According to tradition, the first person to enter the house on New Year's Eve brings either good luck or bad luck.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích liên từ tương liên:<br>• <span class='exp-word'>either... or...</span>: hoặc là cái này hoặc là cái kia.<br>• <span class='exp-word'>the first person to enter...</span>: người xông đất đầu tiên.<br>3. Tại sao chọn đáp án này? Áp dụng liên từ song song chuẩn chỉnh: 'either good luck or bad luck' và kết hợp trạng từ định hướng mở đầu câu đúng nghĩa xông đất ngày Tết cổ truyền.<br>4. Các câu khác đặt sai vị trí của 'either' hoặc 'to'."
+                    },
+                    {
+                        id: "ex1_q10",
+                        q: "regularly / of / particular / place / the / as / Worshipping / days, / the / death / festivals / on / and / day / such / takes / ancestor.",
+                        options: [
+                            "Worshipping takes place regularly on particular days, such as festivals and the death day of the ancestor.",
+                            "Worshipping takes regularly place on particular days, such as festivals and the death day of the ancestor.",
+                            "Worshipping takes place on particular days regularly, such as festivals and the death day of the ancestor.",
+                            "Worshipping takes place regularly on particular days such as, festivals and the death day of the ancestor."
+                        ],
+                        answer: "Worshipping takes place regularly on particular days, such as festivals and the death day of the ancestor.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm động từ trạng ngữ:<br>• <span class='exp-word'>takes place</span>: diễn ra, tổ chức.<br>• <span class='exp-word'>such as</span>: ví dụ như là.<br>• <span class='exp-word'>the death day of the ancestor</span>: ngày giỗ tổ tiên.<br>3. Tại sao chọn đáp án này? Trạng từ 'regularly' đứng bổ trợ ngay sau cụm động từ chính 'takes place', cụm từ ví dụ 'such as' đặt hợp lý.<br>4. Các câu khác chia tách sai vị trí của động từ ghép hoặc đặt dấu phẩy sai chỗ."
+                    },
+                    {
+                        id: "ex1_q11",
+                        q: "gifts/ and have a/ meet/ to exchange/ traditional meal. / Most families/",
+                        options: [
+                            "Most families meet to exchange gifts and have a traditional meal.",
+                            "Most families meet to exchange traditional meal and have a gifts.",
+                            "Most families exchange gifts and meet to have a traditional meal.",
+                            "To exchange gifts, most families meet and have a traditional meal."
+                        ],
+                        answer: "Most families meet to exchange gifts and have a traditional meal.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích ngữ nghĩa toàn câu:<br>• <span class='exp-word'>meet to do something</span>: tụ họp để thực hiện hành động.<br>• <span class='exp-word'>traditional meal</span>: bữa cơm truyền thống sum họp.<br>3. Tại sao chọn đáp án này? Sự kết hợp động từ hoàn toàn tự nhiên: tụ họp để trao đổi quà cáp ('meet to exchange gifts') và cùng dùng bữa cơm gia đình ('have a traditional meal').<br>4. Các câu khác ghép sai tân ngữ (trao đổi bữa cơm và ăn món quà là sai ngữ cảnh)."
+                    }
+                ]
+            },
+            "ex1_p2": {
+                title: "Exercise 1: Reorder (Q12-22)",
+                desc: "Hoàn thiện các câu sắp xếp trật tự từ vựng từ câu 12 tới câu 22 cực kỳ chi tiết.",
+                questions: [
+                    {
+                        id: "ex1_q12",
+                        q: "with/ Homes/ and kumquat. / are decorated/ the apricot blossom, / peach blossom, /",
+                        options: [
+                            "Homes are decorated with the apricot blossom, peach blossom, and kumquat.",
+                            "Homes are decorated with the kumquat, peach blossom, and the apricot blossom.",
+                            "Homes decorated are with the apricot blossom, peach blossom, and kumquat.",
+                            "With the apricot blossom, peach blossom, and kumquat, homes decorated are."
+                        ],
+                        answer: "Homes are decorated with the apricot blossom, peach blossom, and kumquat.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích thể bị động và từ vựng hoa Tết:<br>• <span class='exp-word'>be decorated with</span>: được trang hoàng, trang trí bằng.<br>• <span class='exp-word'>apricot blossom / peach blossom / kumquat</span>: hoa mai, hoa đào, cây quất cảnh.<br>3. Tại sao chọn đáp án này? Đúng trật tự liệt kê danh từ song hành trong tiếng Anh và cấu trúc bị động thì hiện tại đơn giản.<br>4. Các câu còn lại vi phạm cấu trúc bị động vì đặt sai trợ động từ 'are'."
+                    },
+                    {
+                        id: "ex1_q13",
+                        q: "during Tet. / are encouraged/ Children/ or cry/ not to fight/",
+                        options: [
+                            "Children are encouraged not to fight or cry during Tet.",
+                            "Children are encouraged to not fight or cry during Tet.",
+                            "Children are encouraged not to cry or fight during Tet.",
+                            "During Tet, children encouraged are not to fight or cry."
+                        ],
+                        answer: "Children are encouraged not to fight or cry during Tet.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cấu trúc khuyên bảo phủ định:<br>• <span class='exp-word'>be encouraged not to do something</span>: được khuyến khích không nên làm việc gì.<br>• <span class='exp-word'>fight or cry</span>: gây gổ đánh nhau hoặc khóc nhè ngày Tết.<br>3. Tại sao chọn đáp án này? Áp dụng chính xác thể phủ định của to-V đứng sau trạng từ phủ định 'not to V', thể hiện đúng bản sắc giáo dục ngày Tết Việt Nam.<br>4. Các câu khác dùng sai vị trí 'not' hoặc chia trợ động từ bị động sai trật tự."
+                    },
+                    {
+                        id: "ex1_q14",
+                        q: "the house. / plant/ a new year's tree/ Many families/ in front of/",
+                        options: [
+                            "Many families plant a new year's tree in front of the house.",
+                            "Many families plant in front of the house a new year's tree.",
+                            "A new year's tree is planted in front of the house by many families.",
+                            "Many families in front of the house plant a new year's tree."
+                        ],
+                        answer: "Many families plant a new year's tree in front of the house.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm giới từ chỉ địa điểm:<br>• <span class='exp-word'>in front of...</span>: ngay phía trước của cái gì.<br>• <span class='exp-word'>a new year's tree</span>: cây nêu ngày Tết.<br>3. Tại sao chọn đáp án này? Trật tự câu chuẩn chỉ: <span class='exp-word'>S + V + O + Trạng từ vị trí</span>. Hành động trồng cây nêu trước cửa sân nhà đón lành tránh dữ.<br>4. Các từ còn lại đặt cụm giới từ chen ngang giữa động từ chính và tân ngữ trực tiếp là sai cấu trúc ngữ pháp."
+                    },
+                    {
+                        id: "ex1_q15",
+                        q: "to worship/ After/ attend/ the local pagoda/ ancestors. / the family meal, / many Vietnamese people/",
+                        options: [
+                            "After the family meal, many Vietnamese people attend the local pagoda to worship ancestors.",
+                            "After the family meal, many Vietnamese people to worship ancestors attend the local pagoda.",
+                            "After the family meal, many Vietnamese people attend to worship ancestors the local pagoda.",
+                            "Many Vietnamese people attend the local pagoda to worship ancestors after the family meal."
+                        ],
+                        answer: "After the family meal, many Vietnamese people attend the local pagoda to worship ancestors.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích mệnh đề thời gian mở đầu:<br>• <span class='exp-word'>After the family meal</span>: Sau bữa cơm sum họp ấm cúng gia đình.<br>• <span class='exp-word'>to worship ancestors</span>: để thờ cúng, khấn bái tổ tiên.<br>3. Tại sao chọn đáp án này? Trạng từ chỉ thời gian đặt đầu câu có dấu phẩy làm nổi bật hành trình đi chùa thắp hương cầu an của người Việt.<br>4. Các câu khác đặt cụm chỉ mục đích 'to-V' chen lấn giữa động từ chính 'attend' và tân ngữ của nó."
+                    },
+                    {
+                        id: "ex1_q16",
+                        q: "festival. / exciting/ music/ The Glastonbury Festival/ is an/",
+                        options: [
+                            "The Glastonbury Festival is an exciting music festival.",
+                            "The Glastonbury Festival is a music exciting festival.",
+                            "An exciting music festival is the Glastonbury Festival.",
+                            "The exciting music Glastonbury Festival is an festival."
+                        ],
+                        answer: "The Glastonbury Festival is an exciting music festival.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích trật tự tính từ đứng trước danh từ ghép:<br>• <span class='exp-word'>exciting</span> (adj): đầy hào hứng, sôi động.<br>• <span class='exp-word'>music festival</span> (compound noun): lễ hội âm nhạc đỉnh cao.<br>3. Tại sao chọn đáp án này? Áp dụng quy tắc bổ nghĩa tính từ đứng trước danh từ chỉ đặc tính của sự kiện: <span class='exp-word'>opinion (exciting) + purpose (music) + Noun (festival)</span>.<br>4. Các phương án khác đặt sai trật tự bổ trợ từ."
+                    },
+                    {
+                        id: "ex1_q17",
+                        q: "that/ the first person/ is a generous/ and kind-hearted. / to enter/ their house/ Vietnamese people/ hope",
+                        options: [
+                            "Vietnamese people hope that the first person to enter their house is generous and kind-hearted.",
+                            "Vietnamese people hope that the first person is generous and kind-hearted to enter their house.",
+                            "Vietnamese people hope the first person to enter their house that is generous and kind-hearted.",
+                            "Vietnamese people hope that the first person to enter is generous and kind-hearted their house."
+                        ],
+                        answer: "Vietnamese people hope that the first person to enter their house is generous and kind-hearted.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích mệnh đề danh ngữ với 'hope that':<br>• <span class='exp-word'>the first person to enter their house</span>: người đầu tiên bước vào căn nhà của họ.<br>• <span class='exp-word'>generous and kind-hearted</span>: rộng lượng và nhân hậu tử tế.<br>3. Tại sao chọn đáp án này? Áp dụng cấu trúc rút gọn mệnh đề quan hệ dạng bổ ngữ 'to-inf' sau số thứ tự: <span class='exp-word'>the first + N + to-V</span>.<br>4. Các từ còn lại sắp xếp sai mệnh đề khiến câu vô nghĩa."
+                    },
+                    {
+                        id: "ex1_q18",
+                        q: "colorful flowers. / the festival/ people/ Before/ with/ prepare/ their houses/ to decorate/",
+                        options: [
+                            "Before the festival, people prepare to decorate their houses with colorful flowers.",
+                            "Before the festival, people prepare their houses with to decorate colorful flowers.",
+                            "Before the festival, people prepare with colorful flowers to decorate their houses.",
+                            "People prepare to decorate their houses with colorful flowers before the festival."
+                        ],
+                        answer: "Before the festival, people prepare to decorate their houses with colorful flowers.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm động từ đi kèm:<br>• <span class='exp-word'>prepare to do something</span>: chuẩn bị làm việc gì.<br>• <span class='exp-word'>decorate... with...</span>: trang hoàng cái gì bằng...<br>3. Tại sao chọn đáp án này? Theo sát trật tự logic: trước lễ hội cần làm công tác sửa soạn ngôi nhà ngập tràn sắc hoa đẹp mắt.<br>4. Các câu còn lại bị lỗi cấu trúc đi kèm của động từ 'prepare' và giới từ 'with'."
+                    },
+                    {
+                        id: "ex1_q19",
+                        q: "on the/15th day/ The Vu Lan Festival/ seventh/ of the/ lunar month. / takes place/",
+                        options: [
+                            "The Vu Lan Festival takes place on the 15th day of the seventh lunar month.",
+                            "The Vu Lan Festival takes place of the seventh lunar month on the 15th day.",
+                            "On the 15th day, the Vu Lan Festival takes place of the seventh lunar month.",
+                            "The Vu Lan Festival takes on the 15th day of the seventh lunar month place."
+                        ],
+                        answer: "The Vu Lan Festival takes place on the 15th day of the seventh lunar month.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích thời gian âm lịch trong văn hóa Việt:<br>• <span class='exp-word'>takes place</span>: diễn ra.<br>• <span class='exp-word'>15th day of the seventh lunar month</span>: ngày rằm tháng Bảy âm lịch (Lễ Vu Lan báo hiếu).<br>3. Tại sao chọn đáp án này? Áp dụng đúng công thức chỉ ngày tháng: <span class='exp-word'>on + the + số thứ tự + day + of + the + tháng + lunar month</span>.<br>4. Các phương án khác đặt sai cấu trúc hoặc chia tách sai động từ ghép 'takes place'."
+                    },
+                    {
+                        id: "ex1_q20",
+                        q: "to/ seeing/I am/ festival/ in Dak Lak. / looking forward/ the elephant race/",
+                        options: [
+                            "I am looking forward to seeing the elephant race festival in Dak Lak.",
+                            "I am looking forward to see the elephant race festival in Dak Lak.",
+                            "I am looking forward seeing to the elephant race festival in Dak Lak.",
+                            "In Dak Lak, I am looking forward to see the elephant race festival."
+                        ],
+                        answer: "I am looking forward to seeing the elephant race festival in Dak Lak.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm từ cấu trúc mong đợi đặc biệt:<br>• <span class='exp-word'>look forward to + V-ing</span>: rất mong chờ, trông ngóng thực hiện việc gì.<br>• <span class='exp-word'>elephant race festival</span>: lễ hội đua voi Tây Nguyên.<br>3. Tại sao chọn đáp án này? Phải dùng 'to seeing' (V-ing) sau cấu trúc 'look forward to' thay vì động từ nguyên mẫu 'to see' thông thường.<br>4. Đây là một bẫy ngữ pháp cực kỳ phổ biến trong các đề kiểm tra chính thức."
+                    },
+                    {
+                        id: "ex1_q21",
+                        q: "first day/ of Tet. / shouldn't/ You/ on the/ sweep/ the house/",
+                        options: [
+                            "You shouldn't sweep the house on the first day of Tet.",
+                            "You shouldn't on the first day of Tet sweep the house.",
+                            "On the first day of Tet, you shouldn't the house sweep.",
+                            "You shouldn't sweep the first day of Tet on the house."
+                        ],
+                        answer: "You shouldn't sweep the house on the first day of Tet.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích phong tục kiêng kỵ ngày Tết:<br>• <span class='exp-word'>sweep the house</span>: quét dọn rác ra khỏi nhà (theo quan niệm dân gian sẽ làm trôi đi tài lộc ngày đầu năm).<br>3. Tại sao chọn đáp án này? Trật tự hành vi cấm đoán: <span class='exp-word'>S + shouldn't + V-inf + O + trạng ngữ thời gian</span>.<br>4. Các câu khác đảo lộn cấu trúc đặt trạng ngữ chỉ thời gian chen ngang giữa động từ chính và tân ngữ."
+                    },
+                    {
+                        id: "ex1_q22",
+                        q: "about/ other/ cultures. /I am/ interested/ in learning/",
+                        options: [
+                            "I am interested in learning about other cultures.",
+                            "I am interested about learning in other cultures.",
+                            "I am in learning interested about other cultures.",
+                            "Other cultures, I am interested in learning about."
+                        ],
+                        answer: "I am interested in learning about other cultures.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các từ thành câu đúng nghĩa.<br>2. Phân tích cụm giới từ đi với tính từ:<br>• <span class='exp-word'>be interested in + V-ing/N</span>: thích thú, quan tâm, đam mê về điều gì.<br>• <span class='exp-word'>learn about other cultures</span>: tìm hiểu về các nền văn hóa khác.<br>3. Tại sao chọn đáp án này? Áp dụng đúng công thức 'interested in' đi kèm động từ thêm đuôi '-ing'.<br>4. Các câu khác dùng sai giới từ bổ nghĩa hoặc đặt vị trí lộn xộn."
+                    }
+                ]
+            },
+            "ex2": {
+                title: "Exercise 2: Write full sentences (Q1-10)",
+                desc: "Chọn cấu trúc câu hoàn thiện đầy đủ từ các từ gợi ý cho trước.",
+                questions: [
+                    {
+                        id: "ex2_q1",
+                        q: "We/ wish/ our mom/ health/ longevity! /",
+                        options: [
+                            "We wish our mom both health and longevity!",
+                            "We wish our mom health and longevity with love!",
+                            "We wish our mom would health and longevity!",
+                            "We wish for our mom of health and longevity!"
+                        ],
+                        answer: "We wish our mom both health and longevity!",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Chúng con chúc mẹ cả sức khỏe và sống lâu trăm tuổi!<br>2. Phân tích cụm liên kết danh từ:<br>• <span class='exp-word'>both... and...</span>: cả cái này và cái kia.<br>• <span class='exp-word'>longevity</span> (n): sự trường thọ, sống lâu.<br>3. Tại sao chọn đáp án này? Cấu trúc chúc tụng: <span class='exp-word'>wish + someone + noun phrase (chúc ai đạt được điều gì tốt đẹp)</span>.<br>4. Các đáp án khác dùng sai cấu trúc 'wish' đi kèm động từ khuyết thiếu hoặc giới từ sai vị trí."
+                    },
+                    {
+                        id: "ex2_q2",
+                        q: "He/ released/ after being/ questioned/ by/ police/ yesterday.",
+                        options: [
+                            "He was released after being questioned by the police yesterday.",
+                            "He released after being questioned by police yesterday.",
+                            "He was released after being questioning by the police yesterday.",
+                            "He was release after being questioned by the police yesterday."
+                        ],
+                        answer: "He was released after being questioned by the police yesterday.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Anh ấy đã được thả tự do sau khi bị thẩm vấn bởi cơ quan cảnh sát vào ngày hôm qua.<br>2. Phân tích cấu trúc bị động quá khứ:<br>• <span class='exp-word'>was released</span> (bị động quá khứ đơn): được thả.<br>• <span class='exp-word'>after being questioned</span>: sau khi bị chất vấn (bị động danh động từ sau giới từ 'after').<br>3. Tại sao chọn đáp án này? Đáp án chính xác tuyệt đối về mặt cấu trúc bị động đa tầng và trạng từ thời gian quá khứ 'yesterday'.<br>4. Các đáp án khác thiếu trợ động từ 'was' hoặc chia sai đuôi động từ dạng chủ động."
+                    },
+                    {
+                        id: "ex2_q3",
+                        q: "He/ prays/ luck/ happiness. /",
+                        options: [
+                            "He prays for luck and happiness.",
+                            "He prays luck and happiness together.",
+                            "He is praying luck and happiness for him.",
+                            "He prays about luck and happiness."
+                        ],
+                        answer: "He prays for luck and happiness.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Anh ấy cầu nguyện cho sự may mắn và hạnh phúc ngập tràn.<br>2. Phân tích giới từ đi kèm động từ khấn bái:<br>• <span class='exp-word'>pray for something</span>: cầu mong đạt được điều gì tâm linh tốt lành.<br>3. Tại sao chọn đáp án này? Chỉ có giới từ 'for' mới kết hợp tạo nghĩa cầu khấn xin lộc tài và bình an gia đạo.<br>4. Các câu khác dùng thiếu giới từ hoặc dùng sai giới từ 'about' không tự nhiên."
+                    },
+                    {
+                        id: "ex2_q4",
+                        q: "The man/ monk/ from/ Emei Mountain. /",
+                        options: [
+                            "The man is a monk from Emei Mountain.",
+                            "The man who is a monk from Emei Mountain.",
+                            "The man is monk from Emei Mountain.",
+                            "The man is a monk of Emei Mountain."
+                        ],
+                        answer: "The man is a monk from Emei Mountain.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Người đàn ông ấy chính là một vị sư thầy tu hành đến từ đỉnh núi Nga Mi.<br>2. Phân tích mạo từ danh từ đếm được chỉ nghề nghiệp:<br>• <span class='exp-word'>a monk</span>: một nhà sư (cần mạo từ bất định số ít 'a').<br>• <span class='exp-word'>from</span>: xuất xứ từ vùng địa lý cụ thể.<br>3. Tại sao chọn đáp án này? Có đầy đủ động từ liên kết hệ từ 'is' và mạo từ 'a' đi kèm danh từ đếm được chỉ vị sư thầy.<br>4. Các câu khác bị thiếu động từ chính hoặc thiếu mạo từ chỉ người số ít."
+                    },
+                    {
+                        id: "ex2_q5",
+                        q: "They/ make/ sacrificial offerings/ the gods. /",
+                        options: [
+                            "They make sacrificial offerings to the gods.",
+                            "They make sacrificial offerings for the gods.",
+                            "They make sacrificial offerings with the gods.",
+                            "They make sacrificial offerings of the gods."
+                        ],
+                        answer: "They make sacrificial offerings to the gods.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Họ sửa soạn mâm lễ vật để hiến dâng lên các vị thần linh tối cao.<br>2. Phân tích cụm danh từ tâm linh và giới từ dâng cúng:<br>• <span class='exp-word'>sacrificial offerings</span>: đồ cúng tế, mâm lễ phẩm dâng hương thần thánh.<br>• Cấu trúc: <span class='exp-word'>make offerings TO someone</span> (dâng đồ cúng hướng tới đối tượng thụ hưởng tâm linh).<br>3. Tại sao chọn đáp án này? Giới từ 'to' chỉ đích đến của hành động thờ cúng là dâng hiến tế thần.<br>4. Các đáp án khác dùng giới từ không truyền tải đúng bản chất dâng cúng lễ vật."
+                    },
+                    {
+                        id: "ex2_q6",
+                        q: "The ornamental tree/ in our front yard/ growing/ rapidly. /",
+                        options: [
+                            "The ornamental tree in our front yard is growing rapidly.",
+                            "The ornamental tree in our front yard growing rapidly.",
+                            "The ornamental tree in our front yard is grown rapidly.",
+                            "The ornamental tree in our front yard grows rapidly every day."
+                        ],
+                        answer: "The ornamental tree in our front yard is growing rapidly.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Cây cảnh nghệ thuật ở khoảng sân trước nhà của chúng tôi đang lớn lên nhanh chóng.<br>2. Phân tích thì hiện tại tiếp diễn:<br>• <span class='exp-word'>ornamental tree</span>: cây cảnh trồng làm đẹp không gian sống.<br>• <span class='exp-word'>is growing rapidly</span>: đang sinh trưởng vô cùng nhanh chóng mạnh mẽ.<br>3. Tại sao chọn đáp án này? Đầy đủ động từ khuyết thiếu chia tiếp diễn chỉ tiến trình thay đổi thực tế đang xảy ra của cái cây.<br>4. Các câu khác thiếu trợ động từ 'is' hoặc chia thể bị động sai ý nghĩa sinh trưởng tự nhiên."
+                    },
+                    {
+                        id: "ex2_q7",
+                        q: "Martial arts/ originated/ the East.",
+                        options: [
+                            "Martial arts originated in the East.",
+                            "Martial arts originated from the East.",
+                            "Martial arts is originated in the East.",
+                            "Martial arts are originated in the East."
+                        ],
+                        answer: "Martial arts originated in the East.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Các bộ môn võ thuật có nguồn gốc xuất xứ từ phương Đông xa xưa.<br>2. Phân tích nội động từ chỉ nguồn gốc địa lý:<br>• <span class='exp-word'>originate in + địa danh</span>: bắt nguồn, khởi phát từ vùng đất nào.<br>3. Tại sao chọn đáp án này? 'originate' là nội động từ, không dùng ở dạng bị động 'is originated'. Do đó ta chia thì quá khứ đơn giản chủ động 'originated in'.<br>4. Các đáp án chia bị động hoàn toàn sai quy tắc của nội động từ tiếng Anh."
+                    },
+                    {
+                        id: "ex2_q8",
+                        q: "Young rice cake/ a specialty/ this area.",
+                        options: [
+                            "Young rice cake is a specialty in this area.",
+                            "Young rice cake are a specialty in this area.",
+                            "Young rice cake is specialty in this area.",
+                            "Young rice cake is a specialty of this area."
+                        ],
+                        answer: "Young rice cake is a specialty in this area.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Bánh cốm (bánh gạo non) chính là một đặc sản ẩm thực độc đáo của vùng đất này.<br>2. Phân tích danh từ chỉ ẩm thực đặc thù địa phương:<br>• <span class='exp-word'>young rice cake</span>: bánh cốm thơm ngon ngày thu.<br>• <span class='exp-word'>a specialty</span>: một món đặc sản đắt giá (cần có mạo từ bất định số ít 'a').<br>3. Tại sao chọn đáp án này? Khớp động từ số ít 'is' phù hợp với chủ ngữ danh từ không đếm được 'young rice cake' và dùng đúng cụm giới từ chỉ địa lý 'in this area'.<br>4. Các câu khác bị thiếu mạo từ hoặc dùng sai động từ số nhiều 'are'."
+                    },
+                    {
+                        id: "ex2_q9",
+                        q: "You should/ learn/ Vietnamese table manners. /",
+                        options: [
+                            "You should learn about Vietnamese table manners.",
+                            "You should learn of Vietnamese table manners.",
+                            "You should learn with Vietnamese table manners.",
+                            "You should learn on Vietnamese table manners."
+                        ],
+                        answer: "You should learn about Vietnamese table manners.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Con nên học hỏi, tìm hiểu thêm về các quy tắc xử sự trên bàn ăn của người Việt Nam.<br>2. Phân tích cụm động từ tiếp thu kiến thức:<br>• <span class='exp-word'>learn about something</span>: tìm hiểu, học hỏi kiến thức chuyên đề cụ thể.<br>3. Tại sao chọn đáp án này? Giới từ 'about' là giới từ tự nhiên nhất để diễn đạt việc tiếp cận, tiếp thu văn hóa tập quán xã hội mới.<br>4. Các giới từ khác không đi với động từ 'learn' theo nghĩa tiếp cận kiến thức đời sống này."
+                    },
+                    {
+                        id: "ex2_q10",
+                        q: "We/ have/ a family/ reunion/ next week. /",
+                        options: [
+                            "We will have a family reunion next week.",
+                            "We have a family reunion next week.",
+                            "We are having a family reunion next week.",
+                            "We will have had a family reunion next week."
+                        ],
+                        answer: "We will have a family reunion next week.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Hoàn thành câu: Đại gia đình chúng tôi sẽ tổ chức một buổi sum họp ấm áp vào tuần tới.<br>2. Phân tích thì tương lai đơn:<br>• <span class='exp-word'>next week</span>: dấu hiệu thời gian tương lai rõ rệt.<br>• <span class='exp-word'>will have</span>: sẽ tổ chức, có được.<br>3. Tại sao chọn đáp án này? Đúng thì tương lai đơn chỉ một sự kiện dự kiến sẽ diễn ra ở tương lai gần sắp tới.<br>4. Các đáp án chia thì quá khứ hoàn thành hoặc hiện tại đơn giản không phù hợp tính chất của kế hoạch tương lai này."
+                    }
+                ]
+            },
+            "ex3": {
+                title: "Exercise 3: Sentence Transformation (Q1-10)",
+                desc: "Tìm cấu trúc câu đồng nghĩa sát sườn nhất với câu gốc cho trước.",
+                questions: [
+                    {
+                        id: "ex3_q1",
+                        q: "There’s a tradition that English people drink a lot of tea.",
+                        options: [
+                            "Drinking a lot of tea is English people's favorite tradition.",
+                            "The tradition is that English people must drink a lot of tea.",
+                            "English people follow the tradition of drinking a lot of tea.",
+                            "English people's tradition is followed by a lot of tea."
+                        ],
+                        answer: "English people follow the tradition of drinking a lot of tea.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Có một truyền thống lâu đời là người dân nước Anh uống rất nhiều trà.<br>2. Phân tích cấu trúc chuyển đổi đồng nghĩa:<br>• Cấu trúc gốc: <span class='exp-word'>There's a tradition that...</span> (Có một truyền thống rằng...)<br>• Cấu trúc chuyển đổi: <span class='exp-word'>follow the tradition of + V-ing</span> (theo đuổi, duy trì truyền thống làm gì).<br>3. Tại sao chọn C? Diễn tả hành vi tiếp nối nếp sống văn hóa thưởng trà truyền thống một cách tự nhiên và chính xác nhất.<br>4. Câu B sai vì dùng từ ép buộc nghĩa 'must' (phải uống), câu A và D sai ngữ nghĩa thực tế."
+                    },
+                    {
+                        id: "ex3_q2",
+                        q: "Last year we went to Thailand on Tet holiday.",
+                        options: [
+                            "We broke the Tet tradition last year because we were in Thailand.",
+                            "Last year we broke with tradition by going to Thailand on Tet holiday.",
+                            "Going to Thailand on Tet holiday broke our tradition last year.",
+                            "We decided to cancel our trip to Thailand on Tet holiday last year."
+                        ],
+                        answer: "Last year we broke with tradition by going to Thailand on Tet holiday.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Năm ngoái chúng tôi đã lựa chọn đi du lịch nghỉ dưỡng bên Thái Lan vào đúng dịp Tết Nguyên Đán.<br>2. Phân tích cụm thành ngữ phá cách:<br>• Thành ngữ: <span class='exp-word'>break with tradition</span>: phá bỏ nếp sống truyền thống cũ (ở đây là việc đón Tết quây quần tại quê nhà) để làm một việc mới mẻ.<br>3. Tại sao chọn B? Phản ánh đúng hành vi phá cách đón Tết xa nhà bằng việc đi du ngoạn nước ngoài bằng cấu trúc giới từ phương thức 'by + V-ing'.<br>4. Các câu khác diễn đạt sai bản chất hoặc mang nghĩa tiêu cực hủy bỏ chuyến đi một cách vô lý."
+                    },
+                    {
+                        id: "ex3_q3",
+                        q: "The Vietnamese have the custom of worshipping ancestors.",
+                        options: [
+                            "Ancestors are worshiped by the custom of Vietnamese people.",
+                            "The custom of Vietnamese people is worshipping their ancestors.",
+                            "Worshipping ancestors is the custom of Viet Nam.",
+                            "In Viet Nam there is a custom of worshipping ancestors."
+                        ],
+                        answer: "In Viet Nam there is a custom of worshipping ancestors.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Người Việt Nam sở hữu một tập tục lâu đời chính là thờ phụng, kính bái tổ tiên.<br>2. Phân tích cấu trúc tồn tại xã hội:<br>• Cấu trúc: <span class='exp-word'>In [country], there is a custom of + V-ing</span> (Tại quốc gia ấy, hiện hữu một tập tục lâu đời làm việc gì).<br>3. Tại sao chọn D? Đây là cấu trúc chuyển dịch ý văn phong bản xứ tự nhiên và trung hòa nhất đối với chủ đề phong tục học.<br>4. Các câu khác bị lỗi giới từ hoặc diễn đạt tối nghĩa, gượng ép cấu trúc."
+                    },
+                    {
+                        id: "ex3_q4",
+                        q: "It’s the custom for Vietnamese parents to celebrate their baby’s first month.",
+                        options: [
+                            "Vietnamese parents must have the custom to celebrate their baby's first month.",
+                            "Vietnamese parents are accustomed to having a baby's first month celebration.",
+                            "The custom is to have Vietnamese parents celebrate their baby's first month.",
+                            "Vietnamese parents have the custom of celebrating their baby's first month."
+                        ],
+                        answer: "Vietnamese parents have the custom of celebrating their baby's first month.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Đó là phong tục của các bậc cha mẹ Việt Nam khi làm lễ mừng đầy tháng cho con yêu tròn một tháng tuổi.<br>2. Phân tích cấu trúc biến đổi danh từ:<br>• Cấu trúc gốc: <span class='exp-word'>It is the custom for someone to do something</span>.<br>• Cấu trúc tương đương: <span class='exp-word'>Someone + have the custom of + V-ing</span>.<br>3. Tại sao chọn D? Chuyển đổi hoàn hảo từ cấu trúc chủ ngữ giả định sang chủ ngữ chỉ người thực hiện hành vi tập quán xã hội dâng lễ đầy tháng.<br>4. Các đáp án khác bị gượng ép từ 'must' hoặc cấu trúc quen thuộc 'be accustomed to' không lột tả được nét đẹp tập tục xã hội."
+                    },
+                    {
+                        id: "ex3_q5",
+                        q: "According to tradition, Vietnamese people celebrate the Mid-Autumn Festival every year.",
+                        options: [
+                            "The tradition is to celebrate the Mid-Autumn Festival in Vietnam every year.",
+                            "Vietnamese people have a tradition of celebrating the Mid-Autumn Festival every year.",
+                            "Vietnamese people celebrate the tradition of the Mid-Autumn Festival every year.",
+                            "There is a tradition that Vietnamese people celebrate the Mid-Autumn Festival every year."
+                        ],
+                        answer: "Vietnamese people have a tradition of celebrating the Mid-Autumn Festival every year.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Theo truyền thống cổ truyền, người Việt Nam luôn tưng bừng đón mừng ngày Tết Trung thu vào mỗi năm.<br>2. Phân tích cấu trúc sở hữu văn hóa:<br>• Cấu trúc gốc: <span class='exp-word'>According to tradition, S + V...</span><br>• Cấu trúc tương đương: <span class='exp-word'>S + have a tradition of + V-ing...</span> (Chủ ngữ sở hữu một truyền thống lâu đời làm gì).<br>3. Tại sao chọn B? Thể hiện đúng bản sắc và nếp sống văn hóa chủ động ăn mừng ngày Tết đoàn viên của dân tộc Việt.<br>4. Các từ còn lại diễn đạt lặp từ hoặc bị gượng gạo cấu trúc câu bị động giả định."
+                    },
+                    {
+                        id: "ex3_q6",
+                        q: "The Ok Om Bok Festival takes place in October.",
+                        options: [
+                            "The Ok Om Bok Festival is where people organize events in October.",
+                            "People organize the Ok Om Bok Festival in October.",
+                            "October is when the Ok Om Bok Festival organizes its events.",
+                            "Organizing the Ok Om Bok Festival happens in October."
+                        ],
+                        answer: "People organize the Ok Om Bok Festival in October.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Lễ hội Ok Om Bok nổi tiếng của đồng bào Khmer thường được diễn ra vào đúng tháng Mười dương lịch hàng năm.<br>2. Phân tích cấu trúc chuyển đổi sang chủ động chỉ người tổ chức:<br>• Cấu trúc gốc sử dụng nội động từ: <span class='exp-word'>takes place</span> (diễn ra).<br>• Cấu trúc tương đương: <span class='exp-word'>People + organize + Event (Con người chủ động tổ chức sự kiện)</span>.<br>3. Tại sao chọn B? Truyền tải đúng bản chất hành động thực tế của cộng đồng dân cư khi cùng nhau kiến tạo và hành lễ hội Ok Om Bok trọn vẹn.<br>4. Các phương án khác dùng sai ngữ cảnh hoặc bị lặp danh từ phức phức tạp."
+                    },
+                    {
+                        id: "ex3_q7",
+                        q: "It’s a good idea to hand bowls with both hands.",
+                        options: [
+                            "We have to hand bowls using both hands.",
+                            "Handing bowls with both hands is a must.",
+                            "We are permitted to hand bowls with both hands.",
+                            "We should hand bowls with both hands."
+                        ],
+                        answer: "We should hand bowls with both hands.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sẽ thật là một hành vi lịch thiệp và tốt đẹp khi đưa bát cơm mời người lớn bằng cả hai tay.<br>2. Phân tích sắc thái của động từ khuyết thiếu khuyên bảo:<br>• Cụm gốc: <span class='exp-word'>It is a good idea to-V</span> (Đó là một ý tưởng tuyệt vời, nên làm).<br>• Đồng nghĩa với động từ khuyên bảo lịch sự: <span class='exp-word'>should + V-inf</span> (bản thân chúng ta nên làm việc này).<br>3. Tại sao chọn D? Giúp câu văn trở nên nhẹ nhàng, tinh tế và lịch thiệp đúng phong cách giao tiếp Á Đông.<br>4. Loại A và B vì mang tính áp đặt bắt buộc pháp lý hoặc luật lệ quá khô cứng ('have to', 'is a must')."
+                    },
+                    {
+                        id: "ex3_q8",
+                        q: "We should wait for the host to start eating.",
+                        options: [
+                            "We had better start eating before the host.",
+                            "Waiting for the host to start eating is better for us.",
+                            "It is better for the host if we wait to start eating.",
+                            "We had better wait for the host to start eating."
+                        ],
+                        answer: "We had better wait for the host to start eating.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Chúng ta nên kiên nhẫn đợi gia chủ khua đũa mời dùng bữa trước rồi mới bắt đầu ăn cơm.<br>2. Phân tích cấu trúc lời khuyên khôn ngoan:<br>• Cấu trúc gốc: <span class='exp-word'>should + V-inf</span> (nên làm gì).<br>• Cấu trúc đồng nghĩa nâng cao: <span class='exp-word'>had better + V-inf</span> (tốt nhất là nên thực hiện hành động này để tránh bất lịch sự).<br>3. Tại sao chọn D? Truyền tải đúng chuẩn nề nếp gia giáo ứng xử bàn ăn tôn trọng chủ nhà đón tiếp.<br>4. Loại A vì khuyên ăn trước chủ nhà là hoàn toàn vô phép, sai lệch bản chất văn hóa."
+                    },
+                    {
+                        id: "ex3_q9",
+                        q: "Don’t sweep the floor on the first three days of Tet.",
+                        options: [
+                            "It is not necessary to sweep the floor on the first three days of Tet.",
+                            "We shouldn't sweep the floor on the first three days of Tet.",
+                            "We could sweep the floor on the first three days of Tet if we wanted to.",
+                            "Sweeping the floor on the first three days of Tet is not allowed for us."
+                        ],
+                        answer: "We shouldn't sweep the floor on the first three days of Tet.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Đừng bao giờ quét dọn sàn nhà sạch sẽ vào đúng 3 ngày mùng Một, mùng Hai, mùng Ba Tết Nguyên đán.<br>2. Phân tích câu mệnh lệnh phủ định khuyên ngăn:<br>• Cấu trúc gốc dạng mệnh lệnh: <span class='exp-word'>Don't + V-inf!</span> (Đừng làm việc đó!).<br>• Chuyển đổi sang dạng lời khuyên kiêng kỵ: <span class='exp-word'>S + shouldn't + V-inf</span> (chúng ta không nên làm việc này).<br>3. Tại sao chọn B? Đây là cách thức khuyên răn thâm thúy, nhẹ nhàng về một nét đẹp tập tục dân gian kiêng kỵ xua đuổi tài lộc ngày đầu xuân năm mới.<br>4. Câu C sai vì khuyến khích quét nhà, câu A giảm nhẹ mức độ kiêng kỵ quá đà."
+                    },
+                    {
+                        id: "ex3_q10",
+                        q: "Never use bad words in conversations with others, especially with older people.",
+                        options: [
+                            "We had better use good words in conversations with older people.",
+                            "We had to not use bad words in conversations with older people.",
+                            "We had better not use bad words in conversations with others, especially with older people.",
+                            "It's best if we had used bad words in conversations with older people."
+                        ],
+                        answer: "We had better not use bad words in conversations with others, especially with older people.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Tuyệt đối không được phép sử dụng những từ ngữ thô tục, vô lễ khi trò chuyện giao lưu cùng người khác, đặc biệt là đối với những người bề trên lớn tuổi.<br>2. Phân tích cấu trúc khuyên răn phủ định tuyệt đối:<br>• Cấu trúc gốc: <span class='exp-word'>Never + V-inf...</span> (Tuyệt đối không bao giờ làm...).<br>• Cấu trúc chuyển đổi đồng nghĩa: <span class='exp-word'>S + had better NOT + V-inf...</span> (Tốt nhất là không nên thực hiện hành động xấu này).<br>3. Tại sao chọn C? Đây là câu khuyên bảo chuẩn chỉnh về mặt đạo đức ứng xử xã hội và ngữ pháp cấu trúc phân từ phủ định của 'had better'.<br>4. Các đáp án khác chia sai trật tự từ phủ định hoặc khuyên sai ý nghĩa nguyên bản."
+                    }
+                ]
+            },
+            "ex4": {
+                title: "Exercise 4: Paragraph Arrangement (Q1-2)",
+                desc: "Sắp xếp thứ tự các dòng văn bản để tạo thành một bức thư hoặc đoạn văn hoàn chỉnh có ý nghĩa logic.",
+                questions: [
+                    {
+                        id: "ex4_q1",
+                        q: `<div class="envelope-letter p-5 md:p-6 text-slate-800">
+                                <p class="font-extrabold text-amber-900 border-b pb-2 mb-3"><i class="fa-solid fa-envelope-open-text text-amber-600"></i> Bức thư gửi Linh từ bạn Mai:</p>
+                                <ul class="space-y-2 text-sm md:text-base font-bold">
+                                    <li><strong>a.</strong> You can watch amazing boat races on the river, see beautiful lanterns, and try delicious traditional food.</li>
+                                    <li><strong>b.</strong> I heard you're looking for fun things to do next month. I really want to tell you about the Ok Om Bok Festival!</li>
+                                    <li><strong>c.</strong> It's a special festival in the Mekong Delta, usually in November. It's a Khmer traditional event with many exciting activities.</li>
+                                    <li><strong>d.</strong> How are you? I hope you're doing well!</li>
+                                    <li><strong>e.</strong> You should definitely try to go! Let me know if you want to know more.</li>
+                                    <li><strong>f.</strong> There's also a Moon worship ceremony. It's a great chance to learn about new culture and have a wonderful time.</li>
+                                </ul>
+                            </div>`,
+                        options: [
+                            "d-b-c-a-f-e",
+                            "b-d-c-a-f-e",
+                            "d-c-b-a-f-e",
+                            "d-b-a-c-f-e"
+                        ],
+                        answer: "d-b-c-a-f-e",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các câu để hoàn thiện bức thư hỏi thăm gửi Linh từ bạn Mai giới thiệu lễ hội Ok Om Bok.<br>2. Phân tích logic cấu trúc thư tín:<br>• <span class='exp-word'>d</span>: Lời hỏi thăm sức khỏe xã giao mở đầu bức thư ('How are you? I hope...').<br>• <span class='exp-word'>b</span>: Dẫn dắt lý do viết thư để giới thiệu sự kiện lễ hội Ok Om Bok ('I heard you're looking...').<br>• <span class='exp-word'>c</span>: Giới thiệu thời gian, địa điểm, bản sắc lễ hội của đồng bào Khmer tại đồng bằng sông Cửu Long.<br>• <span class='exp-word'>a</span>: Liệt kê chi tiết hoạt động vui chơi nhảy múa đua thuyền rồng và đèn lồng hoa đăng.<br>• <span class='exp-word'>f</span>: Giới thiệu thêm về lễ cúng trăng độc đáo tâm linh cầu an mùa màng thịnh vượng.<br>• <span class='exp-word'>e</span>: Lời kêu gọi rủ bạn đi cùng trải nghiệm thực tế và lời chúc sức khỏe cuối thư.<br>3. Tại sao chọn A? Vì đây là trình tự mạch phát triển ý logic duy nhất phù hợp với quy tắc viết thư cá nhân bằng tiếng Anh.<br>4. Các trình tự khác bị đảo ngược câu hỏi thăm xã giao xuống dưới là vô lý bất lịch sự."
+                    },
+                    {
+                        id: "ex4_q2",
+                        q: `<div class="envelope-letter p-5 md:p-6 text-slate-800">
+                                <p class="font-extrabold text-teal-950 border-b pb-2 mb-3"><i class="fa-solid fa-water text-teal-600 animate-pulse"></i> Đoạn văn về Lễ Hội Cá Ông Cần Giờ (Nghinh Ông):</p>
+                                <ul class="space-y-2 text-sm md:text-base font-bold">
+                                    <li><strong>a.</strong> I think everyone should attend this festival because it is a great way to see an old Vietnamese tradition.</li>
+                                    <li><strong>b.</strong> The Cần Giờ Whale Festival is a very important event for local people who live by the sea.</li>
+                                    <li><strong>c.</strong> During the event, people pray, and they have fun activities like singing and dancing.</li>
+                                    <li><strong>d.</strong> The fishermen believe the Whale God is their protector when they are sailing.</li>
+                                    <li><strong>e.</strong> This festival, also called Nghinh Ông, happens every year near Ho Chi Minh City.</li>
+                                    <li><strong>f.</strong> This custom helps the community feel close and keeps their culture strong.</li>
+                                </ul>
+                            </div>`,
+                        options: [
+                            "b-e-a-d-c-f",
+                            "b-d-e-a-c-f",
+                            "e-b-d-c-a-f",
+                            "b-e-d-c-a-f"
+                        ],
+                        answer: "b-e-d-c-a-f",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các câu để hoàn thiện đoạn văn giới thiệu về Lễ hội Nghinh Ông ở Cần Giờ.<br>2. Phân tích tiến trình lập luận đoạn văn:<br>• <span class='exp-word'>b</span>: Câu chủ đề (Topic sentence) giới thiệu tên lễ hội Cá Ông Cần Giờ là sự kiện đặc biệt quan trọng với ngư dân bám biển.<br>• <span class='exp-word'>e</span>: Giới thiệu tên gọi khác là Lễ hội Nghinh Ông và địa lý hành chính tổ chức gần TP. Hồ Chí Minh hàng năm.<br>• <span class='exp-word'>d</span>: Giải thích lý do tâm linh sâu xa: ngư dân tin tưởng Ngài Cá Ông chính là vị thần hộ mệnh tối cao che chở sóng gió khi ra khơi khơi xa.<br>• <span class='exp-word'>c</span>: Mô tả hoạt động thực tế trong lễ hội gồm dâng hương khấn bái và các trò chơi dân gian ca hát truyền thống.<br>• <span class='exp-word'>a</span>: Bày tỏ quan điểm cá nhân khuyến nghị mọi người nên hành hương tham gia lễ hội tuyệt vời này.<br>• <span class='exp-word'>f</span>: Nhấn mạnh giá trị nhân văn to lớn của phong tục này trong việc gắn kết cộng đồng và giữ vững bản sắc dân tộc.<br>3. Tại sao chọn D? Thứ tự lập luận chặt chẽ: Đi từ giới thiệu khái niệm -> Thông tin địa lý -> Bản chất tâm linh -> Hoạt động chi tiết -> Nhận xét đúc rút giá trị.<br>4. Các trình tự khác bị đứt gãy mạch thông tin liên kết giữa các câu."
+                    }
+                ]
+            },
+            "ex5": {
+                title: "Exercise 5: Reading & Logic Tasks (Q1-4)",
+                desc: "Thực hiện lựa chọn câu chủ đề hoặc sắp xếp các mảnh ghép văn bản hoàn hảo nhất để hoàn thiện khối đọc hiểu.",
+                questions: [
+                    {
+                        id: "ex5_q1",
+                        q: `<div class="spooky-card p-5 md:p-6 text-slate-800">
+                                <p class="font-extrabold text-orange-800 border-b pb-2 mb-3"><i class="fa-solid fa-ghost text-orange-600 animate-bounce"></i> Đoạn 1: Đêm Hội Halloween vui nhộn</p>
+                                <p class="font-bold text-sm md:text-base leading-relaxed mb-4">
+                                    Halloween is a very exciting and enjoyable day for many people. <span class="bg-yellow-200 px-2 py-0.5 rounded text-amber-900 border border-dashed border-amber-400 font-extrabold">[Chỗ trống cần điền]</span>. I think Halloween is a great time because you can dress up in a funny or scary costume and get free candy.
+                                </p>
+                                <div class="bg-white/80 p-3 rounded-xl border">
+                                    <span class="font-black text-xs text-orange-700 block mb-2">Các câu cần lựa chọn sắp xếp:</span>
+                                    <ul class="text-xs font-bold space-y-1">
+                                        <li><strong>a.</strong> In my opinion, it's the best holiday because everyone gets to be a little bit spooky and eat treats.</li>
+                                        <li><strong>b.</strong> Halloween is a fun holiday that people celebrate every year on October 31st.</li>
+                                        <li><strong>c.</strong> Kids especially love to go "trick-or-treating" around their neighborhood.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4 font-extrabold text-slate-700 text-sm">Câu hỏi: Chọn thứ tự sắp xếp (a-c) thích hợp nhất để điền vào chỗ trống trên:</div>`,
+                        options: [
+                            "a - c – b",
+                            "b - c – a",
+                            "c - a – b",
+                            "b - a - c"
+                        ],
+                        answer: "b - c – a",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Lựa chọn thứ tự sắp xếp ba câu văn (a, b, c) để điền vào khoảng trống tạo mạch đoạn văn logic về Halloween.<br>2. Phân tích mạch liên kết thông tin:<br>• Câu mở đầu đang giới thiệu Halloween là ngày lễ vô cùng vui nhộn. Do đó, câu kế tiếp <span class='exp-word'>b</span> giới thiệu rõ mốc thời gian diễn ra ngày lễ vào 31 tháng Mười là chuẩn chỉnh nối tiếp thông tin.<br>• Tiếp theo, câu <span class='exp-word'>c</span> đề cập chi tiết đối tượng yêu thích đặc biệt là con trẻ với trò chơi truyền thống gõ cửa xin kẹo 'trick-or-treating'.<br>• Cuối cùng, câu <span class='exp-word'>a</span> chốt hạ bằng việc bày tỏ quan điểm cá nhân vì sao đây là kỳ nghỉ tuyệt vời nhất vì mọi người được hóa trang kỳ bí và ăn kẹo ngon.<br>3. Tại sao chọn B? Sự chuyển dịch thông tin từ định nghĩa tổng quát -> thời gian cụ thể -> hành động của trẻ em -> đúc rút cảm xúc cá nhân là mạch lập luận hoàn hảo nhất.<br>4. Các phương án khác đưa ý kiến cá nhân lên trước mốc thời gian giới thiệu làm câu văn bị rời rạc thiếu tự nhiên."
+                    },
+                    {
+                        id: "ex5_q2",
+                        q: `<div class="spooky-card p-5 md:p-6 text-slate-800">
+                                <p class="font-extrabold text-orange-800 border-b pb-2 mb-3"><i class="fa-solid fa-play text-orange-600"></i> Lựa chọn câu mở đầu (START) phù hợp nhất cho đoạn văn Halloween ở trên:</p>
+                                <p class="font-bold text-sm md:text-base leading-relaxed">
+                                    Hãy tìm một câu văn đóng vai trò là câu dẫn giới thiệu chung tổng quát cuốn hút nhất để bắt đầu toàn bộ đoạn chia sẻ văn bản về lễ hội hóa trang Halloween này.
+                                </p>
+                            </div>`,
+                        options: [
+                            "In conclusion, this holiday is popular worldwide.",
+                            "Halloween is a fun holiday that people celebrate every year on October 31st.",
+                            "As a result of this celebration, people enjoy costumes and treats.",
+                            "Therefore, people get to eat a lot of candy on this night."
+                        ],
+                        answer: "Halloween is a fun holiday that people celebrate every year on October 31st.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Tìm câu mở đầu đoạn văn phù hợp nhất để giới thiệu chủ đề lễ hội Halloween.<br>2. Phân tích 4 đáp án:<br>• <span class='exp-word'>In conclusion...</span>: Tóm lại là (chỉ dùng cho câu kết luận cuối bài).<br>• <span class='exp-word'>Halloween is a fun holiday...</span>: Halloween là một kỳ nghỉ lễ hội vui tươi mà mọi người chào đón vào ngày 31/10 hàng năm (Giới thiệu trực diện, trung thực chủ đề).<br>• <span class='exp-word'>As a result...</span>, <span class='exp-word'>Therefore...</span>: Kết quả là, do đó (các liên từ chỉ hệ quả, không bao giờ dùng làm câu mở đầu giới thiệu khái niệm lần đầu).<br>3. Tại sao chọn B? Vì câu B là câu chủ đề hoàn hảo nhất lột tả đầy đủ chủ thể, tính chất và mốc thời gian đặc trưng của ngày hội.<br>4. Các câu khác vi phạm nguyên lý viết đoạn văn mở đầu vì chứa các liên từ kết luận hoặc liên từ chỉ nguyên nhân kết quả."
+                    },
+                    {
+                        id: "ex5_q3",
+                        q: `<div class="bg-emerald-50 p-5 md:p-6 text-slate-800 border-3 border-emerald-500 rounded-3xl">
+                                <p class="font-extrabold text-emerald-800 border-b pb-2 mb-3"><i class="fa-solid fa-utensils text-emerald-600 animate-pulse"></i> Đoạn 2: Quy Tắc Ứng Xử Bàn Ăn Người Việt</p>
+                                <p class="font-bold text-sm md:text-base leading-relaxed mb-4">
+                                    <span class="bg-yellow-200 px-2 py-0.5 rounded text-amber-900 border border-dashed border-amber-400 font-extrabold">[Vị trí câu số 1]</span>. When eating, it's polite to wait for the oldest person to start the meal first. <span class="bg-yellow-200 px-2 py-0.5 rounded text-amber-900 border border-dashed border-amber-400 font-extrabold">[Vị trí câu số 2]</span>. These simple customs ensure that mealtimes are always happy and respectful gatherings.
+                                </p>
+                            </div>
+                            <div class="mt-4 font-extrabold text-slate-700 text-sm">Câu hỏi: Chọn câu chủ đề (TOPIC SENTENCE) thích hợp nhất để điền vào vị trí số (1) để bắt đầu đoạn văn:</div>`,
+                        options: [
+                            "You should never leave your chopsticks sticking up in your rice bowl, as this is bad luck.",
+                            "Vietnamese table manners are important for showing respect, especially to elders.",
+                            "Mealtimes are always happy and respectful gatherings in Vietnam.",
+                            "I think these manners are very good because they help families feel close."
+                        ],
+                        answer: "Vietnamese table manners are important for showing respect, especially to elders.",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Tìm câu chủ đề tương thích nhất đứng ở vị trí số (1) mở đầu đoạn văn bàn ăn Việt Nam.<br>2. Phân tích mạch văn của đoạn:<br>• Câu tiếp theo liền kề mô tả việc: 'Khi ăn cơm, phép lịch sự là hãy kiên nhẫn đợi người lớn tuổi nhất khai đũa trước rồi mới ăn'. Hành vi này chính là biểu hiện cụ thể của việc kính trọng người bề trên lớn tuổi ('respect to elders').<br>3. Tại sao chọn B? Vì câu B khái quát hóa toàn bộ ý nghĩa cốt lõi của cả đoạn: phép lịch sự bàn ăn của người Việt dùng để thể hiện lòng kính trọng người lớn tuổi trong nhà.<br>4. Các câu khác chỉ là ví dụ nhỏ đơn lẻ (như cắm đũa vào bát cơm) hoặc là câu nhận xét cảm xúc cá nhân, không đủ tầm khái quát làm câu chủ đề mở đoạn."
+                    },
+                    {
+                        id: "ex5_q4",
+                        q: `<div class="bg-emerald-50 p-5 md:p-6 text-slate-800 border-3 border-emerald-500 rounded-3xl">
+                                <p class="font-extrabold text-emerald-800 border-b pb-2 mb-3"><i class="fa-solid fa-list-ol text-emerald-600"></i> Sắp xếp các câu (a-c) để hoàn thiện vào vị trí chỗ trống số (2) của đoạn văn bàn ăn Việt Nam ở trên:</p>
+                                <ul class="space-y-2 text-xs font-bold bg-white/90 p-3 rounded-2xl border">
+                                    <li><strong>a.</strong> It is also important to remember never to leave your chopsticks sticking up in your rice bowl, as this is bad luck.</li>
+                                    <li><strong>b.</strong> This simple act of waiting is a clear way of showing deep respect for your elders.</li>
+                                    <li><strong>c.</strong> I think these manners are very good because they help families feel close and show appreciation for the food.</li>
+                                </ul>
+                            </div>`,
+                        options: [
+                            "b-c-a",
+                            "a-c-b",
+                            "c-b-a",
+                            "b-a-c"
+                        ],
+                        answer: "b-a-c",
+                        type: "mcq",
+                        exp: "1. Dịch câu hỏi: Sắp xếp các câu văn (a, b, c) để hoàn chỉnh mạch lập luận điền vào chỗ trống số (2).<br>2. Phân tích mạch liên kết đại từ thay thế:<br>• Câu trước vị trí số (2) nói về việc đợi người lớn tuổi ăn cơm trước. Do đó, câu <span class='exp-word'>b</span> mở đầu bằng cụm danh từ chỉ định 'This simple act of waiting...' (Hành động kiên nhẫn đợi chờ giản dị này...) chính là sự tiếp nối hoàn hảo giải thích cho câu phía trước.<br>• Tiếp nối, câu <span class='exp-word'>a</span> mở rộng thêm một quy tắc kiêng kỵ bổ trợ khác bằng từ nối liên kết 'It is also important...' (Cũng cực kỳ quan trọng khi nhớ kiêng cắm đũa dựng đứng vào bát cơm).<br>• Cuối cùng, câu <span class='exp-word'>c</span> đúc kết nhận định cảm xúc tổng quan: 'I think these manners are very good...' (Tôi tin rằng những quy tắc xử sự này rất tốt giúp gia đình khăng khít).<br>3. Tại sao chọn D? Thứ tự lập luận **b-a-c** tuân thủ tuyệt đối quy tắc viết đoạn văn logic bằng việc sử dụng các từ chỉ định thay thế ('this simple act') và từ nối mở rộng ('also') mượt mà.<br>4. Các phương án khác làm đứt gãy đại từ thay thế khiến câu văn trở nên rời rạc khó hiểu."
+                    }
+                ]
+            }
+        };
+
+        let score = 0;
+        let answeredList = {}; // Stores { questionId: { chosenIdx: number, correct: boolean } }
+        let currentActiveTab = "ex1_p1";
+
+        function setupNavigationTabs() {
+            const container = document.getElementById("tabs-container");
+            container.innerHTML = "";
+            let counter = 1;
+
+            for (const key in database) {
+                const item = database[key];
+                const cleanName = item.title.split(":")[0];
+                const tab = document.createElement("button");
+                tab.id = `tab-anchor-${key}`;
+                tab.className = `py-2.5 px-3 rounded-2xl text-xs md:text-sm font-black tab-btn border-b-4 border-black/10 active:translate-y-0.5 shadow-sm transition-all flex items-center justify-center gap-1`;
+                tab.innerHTML = `<i class="fa-solid fa-star text-yellow-300"></i> P.${counter}: ${cleanName}`;
+                tab.onclick = () => switchTab(key);
+                container.appendChild(tab);
+                counter++;
+            }
+            switchTab(currentActiveTab);
+        }
+
+        function switchTab(key) {
+            currentActiveTab = key;
+            document.querySelectorAll("#tabs-container button").forEach(b => b.classList.remove("active"));
+            const targetTab = document.getElementById(`tab-anchor-${key}`);
+            if (targetTab) targetTab.classList.add("active");
+
+            renderWorkspace(key);
+            playSound('correct');
+        }
+
+        function renderWorkspace(key) {
+            const workspace = document.getElementById("exercise-workspace");
+            const data = database[key];
+
+            let html = `
+                <div class="mb-6 border-b-2 border-dashed border-white/20 pb-4">
+                    <h2 class="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+                        <span class="bg-emerald-600 text-white py-1 px-3 rounded-xl text-xs uppercase tracking-wide font-extrabold shadow-sm">Đang học</span>
+                        ${data.title}
+                    </h2>
+                    <p class="text-xs md:text-sm font-bold text-teal-950 mt-1"><i class="fa-solid fa-circle-info"></i> ${data.desc}</p>
+                </div>
+                <div class="space-y-6">
+            `;
+
+            data.questions.forEach((q, idx) => {
+                const answerStatus = answeredList[q.id];
+                let wrapClass = "bg-white/95 rounded-3xl p-5 md:p-6 shadow-md border-b-4 border-black/10 transition-all duration-300 relative";
+                
+                if (answerStatus) {
+                    wrapClass = answerStatus.correct 
+                        ? "bg-green-50 border-4 border-[#00D26A] rounded-3xl p-5 md:p-6 shadow-md relative"
+                        : "bg-red-50 border-4 border-[#FF4757] rounded-3xl p-5 md:p-6 shadow-md relative shake";
+                }
+
+                html += `
+                    <div class="${wrapClass}" id="question-card-${q.id}">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-teal-700 text-white font-extrabold px-3 py-1 rounded-xl text-xs uppercase shadow-sm">CÂU ${idx + 1}</span>
+                            ${answerStatus ? (answerStatus.correct ? '<span class="text-[#00D26A] font-black text-sm"><i class="fa-solid fa-face-laugh-beam"></i> CHÍNH XÁC!</span>' : '<span class="text-[#FF4757] font-black text-sm"><i class="fa-solid fa-face-sad-tear"></i> CHƯA ĐÚNG!</span>') : ''}
+                        </div>
+                `;
+
+                html += `<div class="text-base md:text-lg font-black text-slate-800 leading-relaxed mb-4">${q.q}</div>`;
+                html += `<div class="grid grid-cols-1 gap-3">`;
+                
+                // Render scrambled options
+                q.options.forEach((opt, oIdx) => {
+                    let btnStyle = "btn-answer font-extrabold p-3.5 rounded-2xl text-left border-b-4 flex items-center gap-2 text-sm md:text-base";
+                    let btnIcon = `<i class="fa-regular fa-circle text-teal-300"></i>`;
+                    let isBtnDisabled = answerStatus ? 'disabled' : '';
+
+                    if (answerStatus) {
+                        if (opt === q.answer) {
+                            btnStyle = "bg-[#00D26A] text-white font-extrabold p-3.5 rounded-2xl text-left border-b-4 border-[#009624] flex items-center gap-2 text-sm md:text-base";
+                            btnIcon = `<i class="fa-solid fa-circle-check text-white animate-bounce"></i>`;
+                        } else if (answerStatus.chosenText === opt) {
+                            btnStyle = "bg-[#FF4757] text-white font-extrabold p-3.5 rounded-2xl text-left border-b-4 border-[#C2185B] flex items-center gap-2 text-sm md:text-base";
+                            btnIcon = `<i class="fa-solid fa-circle-xmark text-white"></i>`;
+                        } else {
+                            btnStyle = "bg-gray-100 border-2 border-gray-200 text-gray-400 font-bold p-3.5 rounded-2xl text-left flex items-center gap-2 opacity-60 text-sm md:text-base";
+                        }
+                    }
+
+                    html += `
+                        <button ${isBtnDisabled} onclick="checkMCQAnswer('${q.id}', '${opt}', '${q.answer}')" class="${btnStyle}">
+                            ${btnIcon} <span class="font-black text-xs md:text-sm bg-black/10 py-0.5 px-2 rounded-lg mr-1">${String.fromCharCode(65 + oIdx)}</span> <span>${opt}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+
+                if (answerStatus) {
+                    html += `
+                        <div class="explanation-box mt-5">
+                            <div class="banner-instruction m-4 p-3 font-black text-xs md:text-sm text-center">
+                                Thạc sỹ Ms Lê Hằng English giải thích siêu chi tiết:
+                            </div>
+                            <div class="exp-content px-5 pb-5 text-slate-700">
+                                <p class="font-bold leading-relaxed text-sm md:text-base">
+                                    ${q.exp}
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `</div>`;
+            workspace.innerHTML = html;
+        }
+
+        function checkMCQAnswer(qId, selectedOption, correctAnswer) {
+            if (answeredList[qId]) return;
+
+            const isCorrect = selectedOption === correctAnswer;
+            answeredList[qId] = {
+                correct: isCorrect,
+                chosenText: selectedOption
+            };
+
+            if (isCorrect) {
+                score += 10;
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                playSound('wrong');
+                const card = document.getElementById(`question-card-${qId}`);
+                if (card) {
+                    card.classList.add("shake");
+                    setTimeout(() => card.classList.remove("shake"), 400);
+                }
+            }
+
+            updateScorePanel();
+            renderWorkspace(currentActiveTab);
+        }
+
+        function updateScorePanel() {
+            let totalQCount = 0;
+            for (const k in database) {
+                totalQCount += database[k].questions.length;
+            }
+            const doneCount = Object.keys(answeredList).length;
+            const currentPercentage = totalQCount > 0 ? (doneCount / totalQCount) * 100 : 0;
+            
+            document.getElementById("footer-progress-bar").style.width = `${currentPercentage}%`;
+            document.getElementById("footer-score-text").innerText = score;
+        }
+
+        function submitFinal() {
+            let totalQCount = 0;
+            for (const k in database) {
+                totalQCount += database[k].questions.length;
+            }
+            const doneCount = Object.keys(answeredList).length;
+
+            if (doneCount === 0) {
+                playSound('wrong');
+                showCommentModal("Con ơi, hãy thử sức giải quyết các bài tập bên dưới trước khi bấm nút tổng kết kết quả nhé! Cô chúc con làm thật tốt!", 0, 0, totalQCount);
+                return;
+            }
+
+            let correctCount = 0;
+            for (const key in answeredList) {
+                if (answeredList[key].correct) {
+                    correctCount++;
+                }
+            }
+
+            const percentVal = Math.round((correctCount / totalQCount) * 100);
+            let evaluation = "";
+
+            if (percentVal < 50) {
+                evaluation = "Điểm lần này chưa cao lắm, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+                playSound('wrong');
+            } else if (percentVal >= 50 && percentVal <= 80) {
+                evaluation = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                evaluation = "Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha!";
+                playSound('correct');
+                spawnConfetti();
+                setTimeout(spawnConfetti, 1000);
+            }
+
+            showCommentModal(evaluation, percentVal, correctCount, totalQCount);
+        }
+
+        function showCommentModal(commentText, percentage, correct, total) {
+            document.getElementById("modal-score-percent").innerText = `${percentage}%`;
+            document.getElementById("modal-score-fraction").innerText = `(${correct}/${total} câu trả lời chính xác)`;
+            document.getElementById("modal-comment").innerText = commentText;
+            document.getElementById("result-modal").classList.remove("hidden");
+        }
+
+        function closeResultModal() {
+            document.getElementById("result-modal").classList.add("hidden");
+        }
+
+        function restartTest() {
+            answeredList = {};
+            score = 0;
+            currentActiveTab = "ex1_p1";
+            updateScorePanel();
+            setupNavigationTabs();
+            closeResultModal();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = function() {
+            setupNavigationTabs();
+            updateScorePanel();
+        }
+    </script>
+</body>
+</html>
